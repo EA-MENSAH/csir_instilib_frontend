@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <script src="/docs/5.3/assets/js/color-modes.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.115.4">
+  <title>Books and Monographs</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="../plugins/themify-icons/themify-icons.css">
+  <!--Favicon-->
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <!-- Main Stylesheet -->
+  <!-- <link href="assets/style.css" rel="stylesheet" media="screen" /> -->
+
+  <!-- Custom styles for this template -->
+  <link href="sign-in.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+</head>
+
+
+<body class=" ">
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color:#005a83 !important">
+    <div class="container d-flex align-items-center  py-4">
+      <a class="navbar-brand px-2"  href="../index.html">CSIR-INSTI LIBRARY</a>
+      <a class="navbar-brand px-2"  href="index.html">Back</a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  <div class="container text-start d-flex align-items-center my-3  py-4 bg-body-tertiary">
+    <div class="row d-flex justify-content-center row-cols-1 row-cols-sm-1 row-cols-md-2">
+      <div class="col">
+        <div class="card rounded-0 shadow">
+          <div class="card-header fs-bold">
+            Books and Monographs
+          </div>
+          <div class="card-body">
+            <form class="row g-3 p-3">
+              <div class="col-md-12">
+                <label for="inputEmail4" class="form-label">Title</label>
+                <input type="text" id="title" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-12">
+                <label for="inputPassword4" class="form-label">Authors</label>
+                <input type="text" id="authors" class="form-control form-control-sm">
+              </div>
+              <div class="col-4">
+                <label for="inputAddress" class="form-label">Year of Publication</label>
+                <input type="text" class="form-control form-control-sm" id="year_publication">
+              </div>
+    
+              <div class="col-md-8">
+                <label for="inputCity" class="form-label">Publisher</label>
+                <input type="text" class="form-control form-control-sm" id="publisher">
+              </div>
+    
+              <div class="col-md-8">
+                <label for="inputCity" class="form-label">Identifier </label>
+                <input type="text" class="form-control form-control-sm" id="identifier">
+              </div>
+    
+              <div class="col-6">
+                <label for="inputAddress2" class="form-label">Class Number</label>
+                <input type="text" class="form-control form-control-sm" id="class_no">
+              </div>
+              <div class="col-md-6">
+                <label for="inputCity" class="form-label">Accession Number</label>
+                <input type="text" class="form-control form-control-sm" id="accession_no">
+              </div>
+    
+              <div class="col-md-6">
+                <label for="inputCity" class="form-label">Number of Copies</label>
+                <input type="text" class="form-control form-control-sm" id="no_copies">
+              </div>
+    
+              <div class="col-md-6">
+                <label for="inputCity" class="form-label">Volume Issue NO.</label>
+                <input type="text" class="form-control form-control-sm" id="vol_issue_no">
+              </div>
+    
+              <div class="col-md-12">
+                <label for="inputCity" class="form-label">Subject Area</label>
+                <input type="text" class="form-control form-control-sm" id="subject_area">
+              </div>
+    
+              <div class="col-md-12">
+                <label for="inputCity" class="form-label">Summary</label>
+                <textarea class="form-control form-control-sm" id="summary"></textarea>
+              </div>
+    
+    
+              <div class="col-12 my-2 d-flex justify-content-center my-3">
+                <button type="submit" onclick="createBm()" class="btn btn-sm w-50 rounded-pill btn-primary">Create</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex justify-content-between">
+          <input id="search" onkeyup="search()" class="form-control form-control-sm d-inline rounded-pill" placeholder="Have a question? Just ask here or enter terms">
+          <input type="text" style="width:100px" class="text-center mx-1 form-control rounded-pill form-control-sm d-inline" disabled id="totalData">
+        </div>
+          <div class="list-group w-100" id="list-group"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jquiry -->
+  <script src="../plugins/jquery/jquery-1.12.4.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- match-height JS -->
+  <script src="../plugins/match-height/jquery.matchHeight-min.js"></script>
+  <!-- Main Script -->
+  <!-- <script src="assets/script.js"></script> -->
+
+
+  <script>
+    function createBm() {
+      event.preventDefault()
+
+      var token = getCookie('token')
+
+      var title = document.getElementById("title").value
+      var authors = document.getElementById("authors").value
+      var summary = document.getElementById("summary").value
+      var year_publication = document.getElementById("year_publication").value
+      var identifier = document.getElementById("identifier").value
+      var publisher = document.getElementById("publisher").value
+      var class_no = document.getElementById("class_no").value
+      var accession_no = document.getElementById("accession_no").value
+      var subject_area = document.getElementById("subject_area").value
+      var vol_issue_no = document.getElementById("vol_issue_no").value
+      var no_copies = document.getElementById("no_copies").value
+
+
+
+
+      axios.post('http://127.0.0.1:8000/api/bm',
+        {
+          "title": title,
+          "authors": authors,
+          "summary": summary,
+          "year_publication": year_publication,
+          "identifier": identifier,
+          "class_no": class_no,
+          "accession_no": accession_no,
+          "subject_area": subject_area,
+          "vol_issue_no": vol_issue_no,
+          "no_copies": no_copies,
+          "publisher": publisher
+        }, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+        .then(response => {
+          console.log("success")
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }
+
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+		
+			axios.get(`http://127.0.0.1:8000/api/bm`)
+			.then(response => {
+					let items = response.data
+					htmlItration(items)
+          let totalEl = document.getElementById('totalData')
+          totalEl.value = response.data.length
+			})
+			.catch(error => {
+				console.error('Error fetching data:', error);
+			});
+
+
+		function search(){
+
+			searchVal=document.getElementById("search").value
+
+			if(searchVal == ''){
+				axios.get(`http://127.0.0.1:8000/api/bm`)
+				.then(response => {
+					let items = response.data
+					 var listgroup = document.getElementById('list-group')
+					 listgroup.innerHTML = ''
+           let totalEl = document.getElementById('totalData')
+          totalEl.value = response.data.length
+					htmlItration(items)
+				})
+				.catch(error => {
+					console.error('Error fetching data:', error);
+				});
+			}else{
+				axios.get(`http://127.0.0.1:8000/api/bm/search/${searchVal}`)
+				.then(response => {
+						var listgroup = document.getElementById('list-group')
+						listgroup.innerHTML = ''
+						let items = response.data
+						htmlItration(items)
+				})
+				.catch(error => {
+					console.error('Error fetching data:', error);
+				});
+			}
+		}
+		
+
+		function htmlItration(items){
+			var listGroup = document.getElementById('list-group')
+
+      items.forEach(itemData => {
+      const itemHtml = `
+        <a href="#" id="preview" data-id="${itemData.id}" data-category="bm" class="list-group-item list-group-item-action d-flex gap-3 my-2 shadow py-3" aria-current="true">
+        <img src="https://github.com/twbs.png" alt="Author" width="32" height="32" class="rounded-circle mx-3 flex-shrink-0">
+        <div class="d-flex gap-2 w-100 justify-content-between">
+          <div>
+          <h6 class="mb-0">${itemData.title}</h6>
+          <p class="mb-0 opacity-75">${itemData.authors}</p>
+          </div>
+          <small class="opacity-50 text-nowrap">${itemData.year_publication}</small>
+        </div>
+        </a>
+      `;
+      listGroup.insertAdjacentHTML('beforeend', itemHtml);
+      });
+
+				const listGroupItems = document.querySelectorAll('.list-group-item');
+				listGroupItems.forEach(item => {
+					item.addEventListener('click', function(event) {
+						event.preventDefault(); // Prevent the default link behavior
+						const itemId = this.getAttribute('data-id');
+						const itemCategory = this.getAttribute('data-category');
+						const encodedData = encodeURIComponent(JSON.stringify({id:itemId,category:itemCategory}))
+						const nextPageURL = `../preview.html?data=${encodedData}`;
+						window.location.href = nextPageURL; // Redirect to the new page
+					});
+				});		
+      }
+		
+		function handleItemClick(data) {
+			const encodedData = encodeURIComponent(JSON.stringify(data));
+			const nextPageURL = `../preview.html?data=${encodedData}`;
+			window.location.href = nextPageURL;
+		}
+
+	</script>
+
+</body>
+
+</html>

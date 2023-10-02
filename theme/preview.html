@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<title>CSIR-INSTI LIBRARY</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- theme meta -->
+  <meta name="theme-name" content="CSIR-INSTI LIBRARY" />
+
+	<!-- ** CSS Plugins Needed for the Project ** -->
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+	<!-- themefy-icon -->
+	<link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+	<!--Favicon-->
+	<link rel="icon" href="images/favicon.png" type="image/x-icon">
+	<!-- fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<!-- Main Stylesheet -->
+	<link href="assets/style.css" rel="stylesheet" media="screen" />
+</head>
+
+<body>
+	<!-- header -->
+	<header class="banner overlay bg-cover" data-background="images/banner.jpg">
+		<nav class="navbar navbar-expand-md navbar-dark">
+			<div class="container">
+				<a class="navbar-brand px-2" href="index.html">CSIR-INSTI LIBRARY</a>
+				<button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+					aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				
+			</div>
+		</nav>
+		<!-- banner -->
+		<div class="container section">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<h1 class="text-white mb-3">CSIR-INSTI LIBRARY</h1>
+					<p class="text-white mb-4"> Details of Publication</p>
+				</div>
+			</div>
+		</div>
+		<!-- /banner -->
+	</header>
+
+	<!-- /header -->
+    <div class="px-4 py-5 my-5 text-start">
+       
+        <h1 class="display-5 fw-bold text-body-emphasis text-center" id="title"> THE FUTURE OF HEALTH AND ROBOTICS</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4" id="summary"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi deleniti quos quis commodi eaque cupiditate veniam, suscipit deserunt vitae? Ut eos, recusandae illum voluptas temporibus impedit. Dolor, enim error. Ut? Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime aperiam officiis perferendis. Culpa accusantium debitis facilis, impedit consequuntur facere non quaerat alias eius corporis beatae soluta laboriosam quam ducimus adipisci? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta exercitationem iusto possimus et, tempora earum, vel sit dolorum voluptate architecto vero dolores sint fugiat, aut labore laudantium! Vero, fuga corrupti. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos eos assumenda error, aut ex doloremque vel in. Accusamus, harum recusandae debitis sed quia quis earum, accusantium iure deserunt dolor minus. </p>
+          <div class="">
+				<div class="d-flex align-items-center my-3">
+					<img class="d-block  rounded-circle mr-4" src="./images/img-1.jpg" alt="" width="100" height="100">
+					<H4 id="author">Dr. Paa Bobo</H4>
+					
+				</div>
+				
+			
+				<p>Year Of Publication: <span id="yop">2025</span></p>
+				<p>Date: <span id="date">lorem</span></p>
+				<p>Identifier: <span id="identifier">lorem</span></p>
+				<p>Accertion NO.: <span id="accertionNo">Lorem</span></p>
+				<p>Class NO.: <span id="classNo">Lorem</span></p>
+				<p>Institution.: <span id="inst">Lorem</span></p>
+				<p>Publisher: <span id="publisher">lorem</span></p>
+				<p>Volume Issue NO.: <span id="volNo">Lorem</span></p>
+				<p>No of Copies: <span id="noCopies">Lorem</span></p>
+				<p>Subject Area: <span id="subjectArea">Lorem</span></p>
+				<p>Source of Info: <span id="infoSrc">lorem</span></p>
+				<p>Comments: <span id="comments">lorem</span></p>
+
+          </div> 
+        </div>
+      </div>
+
+
+	<!-- footer -->
+	<footer class="section pb-4">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-8 text-md-left text-center">
+					<p class="mb-md-0 mb-4">Copyright © 2023 Designed and Developed by <a
+							href="index.html">CSIR-INSTI</a></p>
+				</div>
+				<div class="col-md-4 text-md-right text-center">
+					<ul class="list-inline">
+						<li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i
+									class="ti-facebook"></i></a></li>
+						<li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i
+									class="ti-twitter-alt"></i></a></li>
+						<li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i class="ti-github"></i></a>
+						</li>
+						<li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i
+									class="ti-linkedin"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- /footer -->
+
+	<!-- ** JS Plugins Needed for the Project ** -->
+	<!-- jquiry -->
+	<script src="plugins/jquery/jquery-1.12.4.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="plugins/bootstrap/bootstrap.min.js"></script>
+	<!-- match-height JS -->
+	<script src="plugins/match-height/jquery.matchHeight-min.js"></script>
+	<!-- Main Script -->
+	<script src="assets/script.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+	<script>
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const encodedData = urlParams.get('data');
+		const decodedData = JSON.parse(decodeURIComponent(encodedData));
+
+
+		axios.get(`http://127.0.0.1:8000/api/${decodedData.category}/${decodedData.id}`)
+		.then(response => {
+			let resdata = response.data
+			document.getElementById('title').textContent = resdata.title
+			document.getElementById('summary').textContent = resdata.summary
+			document.getElementById('author').textContent = resdata.hasOwnProperty('authors') ? resdata.authors : resdata.facilitator
+			resdata.hasOwnProperty('affiliate_inst') ? document.getElementById('inst').textContent = resdata.affiliate_inst : document.getElementById('inst').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('year_publication') || resdata.hasOwnProperty('yr_publication') ? document.getElementById('yop').textContent = resdata.hasOwnProperty('year_publication') ? resdata.year_publication : resdata.yr_publication : document.getElementById('yop').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('date') ? document.getElementById('date').textContent = resdata.date : document.getElementById('date').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('identifier') ? document.getElementById('identifier').textContent = resdata.identifier : document.getElementById('identifier').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('accession_no') ? document.getElementById('accertionNo').textContent = resdata.accession_no : document.getElementById('accertionNo').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('class_no') ? document.getElementById('classNo').textContent = resdata.class_no : document.getElementById('classNo').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('publisher') ? document.getElementById('publisher').textContent = resdata.publisher : document.getElementById('publisher').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('vol_issue_no') ? document.getElementById('volNo').textContent = resdata.vol_issue_no : document.getElementById('volNo').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('no_copies') ? document.getElementById('noCopies').textContent = resdata.no_copies : document.getElementById('noCopies').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('info_src') ? document.getElementById('infoSrc').textContent = resdata.info_src : document.getElementById('infoSrc').parentElement.style.display = 'none'
+			resdata.hasOwnProperty('comments') ? document.getElementById('comments').textContent = resdata.comments : document.getElementById('comments').parentElement.style.display = 'none'
+			
+		})
+		.catch(error => {
+			console.error('Error fetching data:', error);
+		});
+	</script>
+</body>
+
+</html>
